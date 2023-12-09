@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-lec Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1>
+                <a href="/">
+                    <img src="/static/images/logo.png" alt="Graduation hat">
+                    E-lec<br> Platform
+                </a>
+            </h1>
+            <ul>
+                <li>
+                    <a href="{{ url_for ('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('articles') }}">Articles</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('videos') }}">Videos</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('about') }}">About</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('contact') }}">Get in touch</a>
+                </li>
+                {% if not logged_in %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+
+    <div class="content-section">
+        <div class="left-sidebar">
+            <!-- container with the list of available subjects -->
+            <div class="sub-ject">
+                <div class="sub-title">Subjects</div>
+                <hr class="one">
+                <ul class="subul">
+                    <li><a href="{{ url_for('home', subject='Architecture') }}">Architecture</a></li><hr>
+                    <li><a href="{{ url_for('home', subject='Arts') }}">Arts</a></li><hr>
+                    <li><a href="{{ url_for('home', subject='Biology') }}">Biology</a></li><hr>
+                    <li><a href="{{ url_for('home', subject='Chemistry') }}">Chemistry</a></li><hr>
+                    <li><a href="{{ url_for('home', subject='Computer Science') }}">Computer Science</a></li><hr>
+                    <li><a href="{{ url_for('home', subject='Engineering') }}">Engineering</a></li><hr>
+                    <li><a href="{{ url_for('home', subject='Food and Nutrition') }}">Food and Nutrition</a></li><hr>
+                    <li><a href="{{ url_for('home', subject='Medicine') }}">Medicine</a></li><hr>
+                    <li><a href="{{ url_for('home', subject='Mathematics') }}">Mathematics</a></li><hr>
+                    <li><a href="{{ url_for('home', subject='Other') }}">Other</a></li><hr>
+                </ul>
+            </div>
+            <hr class="two">
+            {% if logged_in %}
+            <div class="profile-button-container">
+                <li><button id="profile-button" class="profile-button">Profile</button></li>
+                <li><button id="logout-button" class="logout-link">Logout</button></li>
+            </div>
+            {% endif %}
+        </div>
+        <div class="middle">
+            <!-- allow users to post questions or replies and view posted questions or replies -->
+            <button id="write-question-button">Write</button>
+            <div id="write-question-form" class="hidden">
+                <label for="question-subject">Subject:</label>
+                <select id="question-subject">
+                    <option value="Architecture">Architecture</option>
+                    <option value="Arts">Arts</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Food and Nutrition">Food and Nutrition</option>
+                    <option value="Medicine">Medicine</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Other">Other</option>
+                    
+                </select>
+                <label for="question-content">Question:</label>
+                <textarea id="question-content" rows="4"></textarea>
+                <button id="post-question-button">Post</button>
+            </div>
+            <div class="questions-section" id="questions-section">
+                <!-- Questions will be displayed here -->
+            </div>
+        </div>
+        
+        <div class="replies-section-container hidden" id="replies-section-container">
+            <div class="close-icon" id="close-icon">&times;</div>
+            <div class="questionsreply-section" id="selected-question-section">
+                <h2 id="selected-question-subject"></h2>
+                <p id="selected-question-content"></p>
+
+            </div>
+            <div class="replies-section" id="replies-section">
+                <!-- Replies will be displayed here -->
+            </div>
+        </div>       
+    </div>
+    <div id="profile-modal" class="modal">
+        <!-- handle pull of logged in user profile with functionality to change their details and password or close account -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>Edit Profile</h2>
+            </div>
+            <div class="form-group">
+                <label for="new-username">New Username:</label>
+                <input type="text" id="new-username">
+            </div>
+            <div class="form-group">
+                <label for="new-email">New Email:</label>
+                <input type="email" id="new-email">
+            </div>
+            <button id="save-user">Save</button>
+            <hr>
+            <div class="form-group">
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password">
+            </div>
+            <div class="form-group">
+                <label for="confirm-new-password">Confirm New Password:</label>
+                <input type="password" id="confirm-new-password">
+            </div>
+            <button id="change-password">Change Password</button>
+            <hr>
+            
+            <div>
+                <button id="close-account">Close Account</button>
+                <div id="password-input-container"></div>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+    <!-- footer -->
+
+    <footer class="foot">
+        <small>&copy; E-lec Platform</small>
+    </footer>
+    
+    <!-- scripts -->
+    <script>
+        function getSessionToken() {
+            return "{{ token }}";
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/profile.js') }}"></script>
+</body>
+</html>

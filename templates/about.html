@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <title>About E-Lec Platform</title>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1>
+                <a href="/">
+                    <img src="/static/images/logo.png" alt="Graduation hat">
+                    E-lec<br> Platform
+                </a>
+            </h1>
+            <ul>
+                <li>
+                    <a href="{{ url_for ('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('articles') }}">Articles</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('videos') }}">Videos</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('about') }}">About</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('contact') }}">Get in touch</a>
+                </li>
+                {% if not logged_in %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+
+    <div class="about-container">
+        <!-- containers detailing what the plaform is about -->
+        <h1>About E-Lec Platform</h1>
+        <p>Welcome to E-Lec Platform, your gateway to diverse educational resources. We provide a curated collection of articles, videos, and more, covering a wide range of subjects. Our platform aims to support and enhance your learning journey.</p>
+        <br>
+        <h2>Our Services</h2><br>
+        <div class="services">
+            <div class="service">
+                <h3>Subjects</h3>
+                <p>Browse and explore a variety of subjects to find resources that match your interests and needs.</p>
+            </div>
+            <div class="service">
+                <h3>Articles</h3>
+                <p>Dive into our collection of informative articles on different topics to expand your knowledge.</p>
+            </div>
+            <div class="service">
+                <h3>Videos</h3>
+                <p>Watch educational videos that cover various subjects and engage in visual learning experiences.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="foot">
+        <small>&copy; E-lec Platform</small>
+    </footer>
+
+    <!-- scripts -->
+    <script>
+        function getSessionToken() {
+            return "{{ token }}";
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+</body>
+</html>

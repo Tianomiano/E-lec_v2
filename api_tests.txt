@@ -1,0 +1,7 @@
+curl -X POST -H "Content-Type: application/json" -d '{
+    "email": "kento@gmail.com",
+    "password": "kento1223"
+}' http://127.0.0.1:5000/api/v1/login
+
+curl -H "Authorization: token" http://127.0.0.1:5000/api/v1/videos/user/21
+

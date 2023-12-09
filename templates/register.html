@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register E-Lec</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <h1>
+                <a href="/">
+                    <img src="/static/images/logo.png" alt="Graduation hat">
+                    E-lec<br> Platform
+                </a>
+            </h1>
+            <ul>
+                <li>
+                    <a href="{{ url_for ('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('articles') }}">Articles</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('videos') }}">Videos</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('about') }}">About</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('contact') }}">Get in touch</a>
+                </li>
+                {% if not logged_in %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+
+    <div id="registration-modal" class="mode">
+        <div class="mode-content">
+            <!-- a registration form and register button that redirects to login if successful -->
+            <form class="Register" action="{{ url_for('register') }}" method="POST">
+                <fieldset class="register-group">
+                        <legend class="lege">Create an account</legend><br>
+                    <label>
+                        Username:
+                        <input type="text" name="username" placeholder="Username" required>
+                    </label><br>
+                    <label>
+                        Email:
+                        <input type="email" name="email" placeholder="Email address" required>
+                    </label>
+                    <label><br>
+                    <label>
+                        Password:
+                        <input type="password" name="password" placeholder="Password" required minlength="8">
+                    </label><br>
+                    <label>
+                        Re-enter password:
+                        <br>
+                        <input type="password" name="confirm_password" id="confirm-password" placeholder="Confirm password" required minlength="8">
+                        <span id="password-mismatch-error" class="error-message">Passwords do not match</span>
+                    </label><br>
+                </fieldset>
+                <fieldset class="account">
+                    <input class="btn btn-default" type="submit" name="submit" value="Register">
+                </fieldset><br>
+                <fieldset>
+                    <label>
+                        Already have an account?
+                        <a href="{{ url_for('login') }}">Login</a>
+                    </label>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <footer class="foot">
+        <small>&copy; E-lec Platform</small>
+    </footer>
+
+    <!-- scripts -->
+    <script>
+        function getSessionToken() {
+            return "{{ token }}";
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="{{ url_for('static', filename='scripts/register.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+</body>
+</html>

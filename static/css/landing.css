@@ -1,0 +1,266 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('/static/images/a5.png');
+    overflow-x: hidden;
+}
+/* Define a custom scroll bar style (optional) */
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: green;
+}
+
+.landing-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 100px;
+    
+}
+
+.content {
+    opacity: 1;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.headline {
+    font-size: 46px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.description {
+    font-size: 38px;
+    font-style: italic;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.email-input {
+    align-items: center;
+    margin-top: 20px;
+}
+
+.email-input input[type="email"] {
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 16px;
+}
+.sign-in-button {
+    padding: 15px 30px;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: green;
+}
+.email-input button.sign-in-button:hover {
+    background-color: #e65100;
+}
+.enter-homepage-button {
+    margin-top: 10px;
+    padding: 10px 10px;
+    background-color: green;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    margin-right: 100px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.enter-homepage-button:hover {
+    background-color: red;
+}
+
+/* Styles for the features section */
+.feature-header h1 {
+    color: white;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+}
+.feature-header p {
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    transition: opacity 0.5s ease;
+    padding: 10px;
+    margin-bottom: 100px;
+}
+
+.feature {
+    flex: 1;
+    width: calc(25% - 20px);
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    animation: borderDots 3s linear infinite;
+    border: 2px dotted #ffffff;
+}
+
+.feature img {
+    max-width: 100%;
+    height: auto;
+}
+.feature:hover img {
+    transform: scale(1.55);
+}
+
+.feature-title {
+    font-size: 24px;
+    margin-top: 5px;
+    color: rgb(255, 255, 255);
+}
+
+.feature-description {
+    font-size: 16px;
+    margin-top: 5px;
+    color: rgb(250, 250, 250);
+}
+
+/* Add styles to gradually reveal the content as you scroll down */
+.landing-page.active .content {
+    opacity: 0;
+    transform: translateY(0);
+}
+
+.landing-page.active .features-container {
+    opacity: 1;
+}
+
+/* Add styles to the About section */
+.about-section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
+.about-video {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.about-description {
+    flex: 1;
+    color: white;
+    font-size: 22px;
+    padding: 10px;
+    border-radius: 15px;
+    animation: borderDots 3s linear infinite;
+    border: 2px dotted #ffffff;
+}
+
+@keyframes borderDots {
+    0% {
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-bottom-width: 2px;
+        border-left-width: 2px;
+        border-color: #f10606;
+    }
+    25% {
+        border-top-width: 6px;
+        border-right-width: 2px;
+        border-bottom-width: 2px;
+        border-left-width: 2px;
+        border-color: transparent transparent #fcfcfc transparent;
+    }
+    50% {
+        border-top-width: 2px;
+        border-right-width: 6px;
+        border-bottom-width: 2px;
+        border-left-width: 2px;
+        border-color: transparent transparent #ffffff transparent;
+    }
+    75% {
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-bottom-width: 6px;
+        border-left-width: 2px;
+        border-color: transparent transparent #ffffff transparent;
+    }
+    100% {
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-bottom-width: 2px;
+        border-left-width: 6px;
+        border-color: transparent transparent #ffffff transparent;
+    }
+}
+
+
+/* Style the video container */
+.about-video iframe {
+    max-width: 100%;
+    border-radius: 25px;
+    animation: borderDots 3s linear infinite;
+    border: 2px dotted #ffffff;
+}
+/* Add styles to the Footer section */
+.footer {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.footer small {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.contact-section,
+.links-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.contact-section p,
+.links-section a {
+    margin: 10px;
+}
+
+.links-section a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.links-section a:hover {
+    color: red;
+    text-decoration: underline;
+}

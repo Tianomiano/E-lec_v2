@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join the discussions and express your views on E-lec platform.">
+    <meta name="author" content="Patrick Miano">
+    <meta name="keywords" content="E-lec, discussions, students, opinions">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+    <title>E-lec platform</title>
+</head>
+
+<body>
+    <div class="landing-page">
+        <div class="content">
+            <h1 class="headline">E-lec platform</h1>
+            <p class="description">Join the discussions and express your views</p>
+
+            <div class="email-input">
+                <input type="email" id="email-input" placeholder="Enter your email address">
+                <button class="sign-in-button" id="sign-in-button">Sign In</button>
+            </div>
+
+            <!-- Enter Homepage Button -->
+            <button id="homepage-button" class="enter-homepage-button">Proceed to homepage</button>
+        </div>
+    </div>
+
+    <!-- Features Container Section -->
+    <div class=" feature-header">
+        <h1>E-lec intends to link students across different learning fields</h1>
+        <p>Some of the main features are...</p>
+    </div>
+    <section class="features-container">
+        <!-- Feature 1 -->
+        <div class="feature">
+            <img src="/static/images/screen1.png" alt="Feature 1 Image">
+            <h2 class="feature-title">Sign in and get access to unlimited features</h2>
+            <p class="feature-description">Sign in and get access to posting replies questions and editing or deleting at your convinience</p>
+        </div>
+        <!-- Feature 2 -->
+        <div class="feature">
+            <img src="/static/images/screen2.png" alt="Feature 2 Image">
+            <h2 class="feature-title">Be part of the discussions</h2>
+            <p class="feature-description">Join the discussions by replying to topics of interest</p>
+        </div>
+        <!-- Feature 3 -->
+        <div class="feature">
+            <img src="/static/images/screen3.png" alt="Feature 3 Image">
+            <h2 class="feature-title">View and post articles</h2>
+            <p class="feature-description">Read posted articles, post/edit or delete your posted articles</p>
+        </div>
+        <!-- Feature 4 -->
+        <div class="feature">
+            <img src="/static/images/screen4.png" alt="Feature 4 Image">
+            <h2 class="feature-title">Control over your information</h2>
+            <p class="feature-description">We offer you the ability to edit your profile names, email, passwords and the ability to close your account where your information is deleted ensuring your data safety</p>
+        </div>
+    </section>
+
+    <div class=" feature-header">
+        <h1>About E-lec</h1>
+    </div>
+    <section class="about-section">
+        <div class="about-video">
+            <iframe width="560" height="315" src="https://www.loom.com/embed/8d23d6c362254148b88397ba134fcc05?sid=60c7086d-f68f-421e-908c-a16d433b688f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <div class="about-description">
+            <h2>Inspiration</h2>
+            <p>
+                I come from a biochemistry background.During my undergraduate questions for assignments would be from different academic fields 
+                and the available online resources were minimal hence a need to interact with students from those fields.
+                This is quite challenging without their contacts.
+                E-lec is designed to bridge this gap allowing students from different fields to share their opinions about topics and be part of the discussions.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <small>&copy; E-lec Platform</small>
+        <div class="contact-section">
+            <p>Contact Us: patomiano6@gmail.com</p>
+            <p>Phone: +254700000000</p>
+            <p>Address: 20100 Nakuru</p>
+        </div>
+        <div class="links-section">
+            <!-- Add your links here -->
+            <a href="https://github.com/Tianomiano">Github</a>
+            <a href="https://www.linkedin.com/in/patrick-miano-swe-scientist/">LinkedIn</a>
+            <a href="#">FAQ</a>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='scripts/landing.js') }}"></script>
+</body>
+</html>

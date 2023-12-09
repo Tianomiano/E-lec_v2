@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1>
+                <a href="/">
+                    <img src="/static/images/logo.png" alt="Graduation hat">
+                    E-lec<br> Platform
+                </a>
+            </h1>
+            <ul>
+                <li>
+                    <a href="{{ url_for ('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('articles') }}">Articles</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('videos') }}">Videos</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('about') }}">About</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('contact') }}">Get in touch</a>
+                </li>
+                {% if not logged_in %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+
+    <div id="Login-modal" class="mode">
+        <!-- a login form and login button -->
+        <div class="mode-content">
+            <form class="Login" action="{{ url_for('login') }}" method="POST">
+                <fieldset class="account-info">
+                    <legend class="lege">Login</legend><br>
+                    <label>
+                        Email:
+                        <br>
+                        <input type="email" name="email" placeholder="Email address" required><br>
+                    </label>
+                    <div id="email-error" class="error-message" style="display: none;">
+                    </div>
+                    <label>
+                        Password:
+                        <br>
+                        <input type="password" name="password" placeholder="Password" required minlength="8"><br>
+                    </label><br>
+                </fieldset>
+                <fieldset class="account-action">
+                    <input class="btn" type="submit" name="submit" value="Login">
+                </fieldset><br>
+                <fieldset>
+                    <label>
+                        Don't have an account yet?
+                        <a href="{{ url_for('register') }}">Register</a>
+                    </label>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <footer class="foot">
+        <small>&copy; E-lec Platform</small>
+    </footer>
+
+    <!-- scripts -->
+    <script>
+        function getSessionToken() {
+            return "{{ token }}";
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/landing.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+    
+</body>
+</html>

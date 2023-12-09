@@ -1,0 +1,68 @@
+/* vid section styles */
+.vid-section {
+    display: flex;
+    margin-top: 70px;
+    max-height: calc(100vh - 70px - 25px - 10px);
+    overflow: hidden;
+}
+/* vid-sidebar styles */
+.vid-sidebar {
+    flex: 1;
+    background-color: #f5f5f5;
+    flex: 0 0 250px; 
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    position: sticky;
+    background-color: #333;
+    top: 70px;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #07fa50;
+    overflow-y: auto;
+    max-height: calc(100vh - 70px);
+}
+
+.vsub-ject {
+    margin-top: 1px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.vsub-ject a {
+    font-size: 25px;
+    text-decoration: none;
+}
+.vsub-ject a:hover {
+    color: #07fa50;
+}
+.vsub-title {
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* videos section styles */
+.vid-middle {
+    flex: 2;
+    padding: 20px;
+    background-color: #f5f5f5;
+    background-color: grey;
+    margin-top: 15px;
+    overflow-y: auto;
+    overflow-y: auto;
+    max-height: calc(100vh - 70px - 20px);
+}
+#post-video-button {
+    background-color: #333;
+    color: white;
+    padding: 5px 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    position: sticky;
+    width: 100px;
+    top: 10px;
+    z-index: 2;
+}

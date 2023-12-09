@@ -1,0 +1,179 @@
+/* Set a minimum height for the page */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Center the registration form */
+.mode {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.lege {
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 15px;
+    font-size: 24px;
+}
+
+.mode-content {
+    max-width: 500px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styles */
+.Register label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 500;
+}
+
+#password-mismatch-error {
+    display: none;
+    color: red;
+}
+
+.Register input[type="text"],
+.Register input[type="email"],
+.Register input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+.Register .btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Register .btn:hover {
+    background-color: #07fc07;
+}
+.Register label {
+    font-size: 22px;
+    font-weight: bold;
+}
+.Register a {
+    color: #3205fa;
+    font-size: 22px;
+}
+
+.Register a:hover {
+    color: #07fc07;
+}
+
+/* Form styles */
+/* Center the login form */
+.Login label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 500;
+    font-size: 32px;
+}
+
+.Login input[type="text"],
+.Login input[type="email"],
+.Login input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    font-size: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.Login .btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Login .btn:hover {
+    background-color: #07fc07;
+}
+
+.Login a {
+    color: #3205fa;
+}
+
+.Login a:hover {
+    color: #07fc07;
+}
+
+/* Profile */
+.prof {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.profile {
+    max-width: 400px;
+    width: 100%;
+    margin-top: 0px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styles */
+.profile label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 500;
+}
+
+.profile input[type="text"],
+.profile input[type="email"],
+.profile input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.profile .btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile .btn:hover {
+    background-color: #07fc07;
+}
+
+.profile a {
+    color: #3205fa;
+}
+
+.profile a:hover {
+    color: #07fc07;
+}
