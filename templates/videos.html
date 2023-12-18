@@ -60,10 +60,9 @@
                 </ul>
             </div>
         </div>
-        <div class="vid-middle">
-            {% if logged_in %}
+        <div class="video-display">
             <!-- Show the post video button and form for logged-in users -->
-            <button id="post-video-button">Post Video</button>
+            <button id="post-video">Post Video</button>
             <div id="post-video-form" class="hidden">
                 <label for="video-subject">Subject:</label>
                 <select id="video-subject">
@@ -78,11 +77,15 @@
                     <option value="Mathematics">Mathematics</option>
                     <option value="Other">Other</option>
                 </select>
-                <label for="video-content">Video URL:</label>
-                <input type="text" id="video-content">
+                <label for="video-title">Video title</label>
+                <textarea id="video-title" rows="2"></textarea>
+                <label for="video-url">Video URL:</label>
+                <textarea id="video-url"></textarea>
                 <button id="post-video-button">Post</button>
             </div>
-            {% endif %}
+            <div class="vid-middle">
+                <!-- videos will be displayed here -->
+            </div>
         </div>
     </div>
 
@@ -98,5 +101,7 @@
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/videos.js') }}"></script>
 </body>
 </html>

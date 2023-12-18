@@ -5,3 +5,4 @@ curl -X POST -H "Content-Type: application/json" -d '{
 
 curl -H "Authorization: token" http://127.0.0.1:5000/api/v1/videos/user/21
 
+curl -X POST -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMX0.3n8yDUZG6eGRcBMeX4H6VsbIkvfDbM0XEstyWP4UZSM" -d '{"subject": "Other", "title": "Sample Title", "video_url": "https://www.loom.com/share/3359926792304f5dbc8b49442f2478c8?sid=f268c727-f1b2-40e8-b12c-8046c4a616a1"}' http://127.0.0.1:5000/api/v1/videos

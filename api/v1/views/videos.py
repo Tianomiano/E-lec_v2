@@ -5,6 +5,7 @@ import jwt
 from flask import request
 from .decorators import require_token
 import validators
+from sqlalchemy.exc import IntegrityError
 
 videos_bp = Blueprint('videos', __name__)
 
@@ -20,14 +21,52 @@ def get_all_videos():
 
     return jsonify({'videos': videos_list})
 
-# API endpoint to get videos for a specific subject
+# Add this function to get the embed code based on the video URL
+def get_embed_code(video_url):
+    # Extract video ID from the shared link
+    if 'loom.com' in video_url:
+        video_id_start = video_url.find('/share/') + len('/share/')
+        video_id_end = video_url.find('?', video_id_start)
+        video_id = video_url[video_id_start:video_id_end]
+
+        # Extract sid parameter from the shared link
+        sid_start = video_url.find('?sid=') + len('?sid=')
+        sid = video_url[sid_start:]
+
+        # Construct the embed code
+        embed_code = f'<iframe width="260" height="215" src="https://www.loom.com/embed/{video_id}?sid={sid}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
+    else:
+        if "youtu.be" in video_url:
+            video_id = video_url.split("/")[-1]
+        elif "youtube.com" in video_url:
+            video_id = video_url.split("v=")[-1].split("&")[0]
+        else:
+            # Invalid YouTube URL
+            return None
+
+        # Construct YouTube embed code
+        embed_code = f'<iframe width="260" height="215" src="https://www.youtube.com/embed/{video_id}" ' \
+                    'title="YouTube video player" frameborder="0" ' \
+                    'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; ' \
+                    'picture-in-picture; web-share" allowfullscreen></iframe>'
+    return embed_code
+
+
 @videos_bp.route('/videos/<subject>', methods=['GET'])
 def get_videos_by_subject(subject):
     # Query the database to get videos for the specified subject
     videos = Video.query.filter_by(subject=subject).all()
 
     # Convert the videos to a list of dictionaries
-    videos_list = [{'question_id': video.question_id, 'videos': video.videos} for video in videos]
+    videos_list = [
+        {
+            'video_id': video.video_id,
+            'subject': video.subject,
+            'title': video.title,
+            'embed_code': get_embed_code(video.url),
+            'date_posted': video.date_posted
+        } for video in videos
+    ]
 
     return jsonify({'videos': videos_list})
 
@@ -55,24 +94,34 @@ def post_video(user_id):
         return jsonify({'error': 'Invalid URL format'}), 400
     
     # Additional safety checks
-    allowed_domains = ['youtube.com', 'vimeo.com', 'loom.com']
+    allowed_domains = ['youtube.com', 'loom.com']
 
     if not any(domain in video_url for domain in allowed_domains):
         return jsonify({'error': 'Invalid video source'}), 400
 
+    # Check for duplicate entry before adding the new video
+    existing_video = Video.query.filter_by(url=video_url).first()
 
-    new_video = Video(
-        subject=subject,
-        title=title,
-        url=video_url,
-        author_id=user_id,
-        date_posted=datetime.utcnow()
-    )
+    if existing_video:
+        return jsonify({'error': 'Video with the same URL already exists'}), 400
 
-    db.session.add(new_video)
-    db.session.commit()
+    try:
+        new_video = Video(
+            subject=subject,
+            title=title,
+            url=video_url,
+            author_id=user_id,
+            date_posted=datetime.utcnow()
+        )
 
-    return jsonify({'message': 'Video posted successfully'}), 201
+        db.session.add(new_video)
+        db.session.commit()
+
+        return jsonify({'message': 'Video posted successfully'}), 201
+
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({'error': 'An error occurred while posting the video'}), 500
 
 @videos_bp.route('/videos/del/<int:video_id>', methods=['DELETE'])
 @require_token
