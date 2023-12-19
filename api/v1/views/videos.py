@@ -70,6 +70,25 @@ def get_videos_by_subject(subject):
 
     return jsonify({'videos': videos_list})
 
+@videos_bp.route('/videos/search/<search_text>', methods=['GET'])
+def search_videos(search_text):
+    # Query the database to get videos that match the search text
+    videos = Video.query.filter(Video.title.ilike(f'%{search_text}%')).all()
+
+    # Convert the videos to a list of dictionaries
+    videos_list = [
+        {
+            'video_id': video.video_id,
+            'subject': video.subject,
+            'title': video.title,
+            'embed_code': get_embed_code(video.url),
+            'date_posted': video.date_posted
+        } for video in videos
+    ]
+
+    return jsonify({'videos': videos_list})
+
+
 
 # API endpoint to post a new video
 @videos_bp.route('/videos', methods=['POST'])
